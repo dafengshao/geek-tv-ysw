@@ -1,0 +1,556 @@
+
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>成人动漫</title>
+<link rel='stylesheet' href='css/msvod_1.css' />
+<link rel='stylesheet' href='css/msvod_2.css' />
+<link rel='stylesheet' href='css/nav.css' />
+<script type="text/javascript">
+function controlRem() {
+var clientWidth = document.documentElement.clientWidth;
+document.getElementsByTagName('html')[0].style.fontSize = '16px';
+}
+controlRem();
+</script>
+<style>
+/* pages */
+.pages ul li {
+float:left;
+width:36px;
+line-height:36px;
+margin-right:5px;
+text-align:center;
+border-radius:15px;
+}
+.pages ul li a {
+display:block;
+background-color:#fff;
+width:36px;
+height:36px;
+color:#a9a9a9;
+border-radius:15px;
+}
+.pages ul li a:hover {
+color:#fff;
+background-color:#bfbfbf
+}
+.pages ul .pagecur a, .pages ul .pagecur a:hover {
+color:#fff;
+background-color:#FFCC00
+}
+.pages ul .prev a {
+background:url(../images/icons.png) no-repeat #fff -68px -34px
+}
+.pages ul .prev a:hover {
+background-color:#bfbfbf;
+background-position:-92px -34px
+}
+.pages ul .next a {
+background:url(../images/icons.png) no-repeat #fff -92px -64px
+}
+.pages ul .next a:hover {
+background-color:#bfbfbf;
+background-position:-68px -64px
+}
+</style>
+</head>
+<body>
+<div class="p-body">
+<style>
+.bb-header-q .b-header-logo { background-size: 100% 100%; width: 155px; }
+.bb-header-logo { text-indent: -9990em; width: 150px; height: 23px; background: url(http://www.esewu.com/uploadfile/2018/0111/20180111121346366.png) no-repeat; background-size: 100% 100%; }
+.bb-header-logo-a { position: absolute; text-indent: -9990em; top:0; left: 15px; display: block; width: 158px; height: 56px; z-index: 200; -webkit-tap-highlight-color: transparent; }
+.bb-header-nav-wrap { padding-bottom: 9px; overflow: hidden; display: -webkit-box; height: 56px; padding-top: 20px;
+    margin-left: -30px;}
+.b-header-logo { text-indent: -9990em; width: 145px; height: 28px; background: url(../images/12.png) no-repeat; background-size: 100% 100% }
+.b-header-logo-a { position: absolute; text-indent: -9990em; top: 9px; left: 15px; display: block; width: 107px; height: 28px; z-index: 200; -webkit-tap-highlight-color: transparent }
+.bb-header-q .bb-header-logo { background: url(http://www.esewu.com/uploadfile/2018/0111/20180111121346366.png);
+</style>
+<script src="/statics/mscms/js/jquery.min.js"></script>
+<style type="text/css">
+.g-header-search-box { overflow: hidden; padding:5px 9px; background: #DA2758; margin: 0px; }
+.g-header-search-box .slide { float: left; font-size: 22px; display: inline-block; color:#fff; margin: 12px 0 0;}
+.g-header-search-box .user-space { float: right; margin-left:22px; font-size: 22px; display: inline-block; color:#fff; margin: 12px 0 0 22px; }
+.g-header-search-box .search-mid { float: right; font-size: 22px; display: inline-block; color:#fff; margin: 12px 0 0;}
+.g-header-search-box .bb-header-nav-wrap { display: inline-block; margin: 0px auto; position: absolute; width: 50%; left: 30%;     padding-top: 12px;}
+.sea { padding: 10px 3px; background: #fff; position: absolute; top: 0px; width: 100%; display: none; z-index:999; }
+.sea #sea-btn-off{font-size: 20px;height:42px;line-height: 42px;width:10%;text-align: center;background: #fff;color:#777;}
+.sea .b-suggest { background: #fff; width: 100%; margin: 0px; padding: 0px; }
+.sea .b-suggest-button { background: #DA2758; width: 50px; height: 40px; }
+.sitenav { position: fixed; left: 0px; top: 0px; width: 100%; z-index: 9999; background: rgba(0, 0, 0, 0.8); height: 100%; display: none; }
+.sitenav i { font-size: 16px; }
+.sitenav .sitenav-on { display: block; line-height: 50px;  height:60px; border-bottom: 1px #DA2758 solid; width:69.9%; background-color:#DA2758; }
+.sitenav a { color: #ccc; }
+.sitenav .left { width: 70%; padding-bottom: 50px; background: #212121; overflow-y: auto; -webkit-overflow-scrolling: touch; position: absolute; top: 60px; left: 0; bottom: 0; right: 0; }
+.sitenav .left .current-menu-item a { background-color: #212121; color: #ccc; width: 100%; }
+.sitenav ul li i { padding-right: 3px; }
+.sitenav ul li a { padding: 7px 10px; display: inline-block; }
+.sitenav ul li a :hover{ color:#DA2758; }
+.sitenav ul .sub-menu { padding-left: 30px; }
+.sitenav ul li{border-top: 1px solid rgba(0, 0, 0, 0.3);
+/* -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05); */
+box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);}
+.sitenav ul .pro{padding-left: 10px;}
+</style>
+<script>
+$(document).ready(function(){
+$("#sea-show").click(function(){
+$("#sea").show();
+});
+$("#sea-btn-off").click(function(){
+$("#sea").hide();
+});
+$("#silde-left").click(function(){
+$("#sitenav").show();
+});
+$("#silde-left-hide").click(function(){
+$("#sitenav").hide();
+});
+$("#left").click(function(){
+$("#sitenav").hide();
+});
+$("#right-hide").click(function(){
+$("#sitenav").hide();
+});
+});
+</script>
+<div class="sitenav" id="sitenav">
+<span class="sitenav-on" >
+<!--   <a  href="javascript:vod(0)" id="silde-left-hide">
+<i class="fa fa-navicon"></i>   </a>
+<a href="/index.php?m=member&c=index&a=wap_index" style="margin-left: 10px;"><i class="fa fa-user"></i></a> -->
+<div class="bb-header-nav-wrap" style="height:60px;">
+<h1 class="bb-header-logo g-night-bgimage js-header-logo" style="margin:0 0 0 15px;"></h1>
+<a class="bb-header-logo-a" href="/index.php?m=wap"></a>
+</div>
+</span>
+<ul class="left" id="left">
+<li class="current-menu-item" style="padding: 7px 10px;">
+<a rel="nofollow" href="/index.php?m=wap" style="padding: 7px 10px; font-size:16px;">
+<i class="fa fa-home" ></i>首页</a>
+</li>
+<li class="pro" style="padding: 7px 10px; font-size:16px;">
+<a href="/index.php?m=wap&a=video_lists&typeid=19"><i class="fa"></i>卡通动漫</a>
+</li>
+<li class="pro" style="padding: 7px 10px; font-size:16px;">
+<a href="/index.php?m=wap&a=video_lists&typeid=5"><i class="fa"></i>制服诱惑</a>
+</li>
+<li class="pro" style="padding: 7px 10px; font-size:16px;">
+<a href="/index.php?m=wap&a=video_lists&typeid=4"><i class="fa"></i>丝袜美腿</a>
+</li>
+<li class="pro" style="padding: 7px 10px; font-size:16px;">
+<a href="/index.php?m=wap&a=video_lists&typeid=3"><i class="fa"></i>欧美性爱</a>
+</li>
+<li class="pro" style="padding: 7px 10px; font-size:16px;">
+<a href="/index.php?m=wap&a=video_lists&typeid=2"><i class="fa"></i>日本无码</a>
+</li>
+<li class="current-menu-item" style="padding: 7px 10px;">
+<a rel="nofollow" href="/down.php" style="padding: 7px 10px; font-size:16px;">
+<i class="fa fa-cloud-download" ></i>APP下载</a>
+</li>
+<li class="pro" style="padding: 7px 10px; font-size:16px;">
+<a href="/index.php?m=content&c=index&a=list_wap_vip&siteid=1" >
+<i class="fa fa-diamond"></i>成为VIP</a>
+</li>
+<li class="pro" style="padding: 7px 10px; font-size:16px;">
+<a href="http://www.esewu.vip/" >
+<i class="fa fa-diamond"></i>备用网址</a>
+</li>
+
+
+</ul>
+<div style="width:30%;height:100%;float: right;" id="right-hide"></div>
+</div>
+<header class="b-header g-header-v2 b-header-q" style="border-bottom:2px solid #DA2758;position: fixed;width: 100%;height:65px;top: 0px;z-index: 999;">
+<div class="b-header-search-wrap g-header-search-box " id="sea-btn-show">
+<a href="javascript:vod(0)" id="silde-left" class="slide"><span class="fa fa-navicon" style="font-size: 30px;"></span></a>
+
+<!--<a href="javascript:vod(0)" style="margin-left:22px;" id="silde-left" class="slide"><span class="fa fa-navicon"></span></a>-->
+
+<div class="bb-header-nav-wrap">
+<h1 class="bb-header-logo g-night-bgimage js-header-logo"></h1>
+<a class="bb-header-logo-a" href="/index.php?m=wap"></a>
+</div>
+<a href="/index.php?m=member&c=index&a=wap_index" class="user-space"><span class="fa fa-user" style="font-size:24px;"></span></a>
+<a href="javascript:vod(0)" id="sea-show" class="search-mid"><span class="fa fa-search" style="font-size:24px;"></span></a>
+</div>
+<div class="sea" id="sea">
+<form class="b-header-search-form js-form" style="width:90%;float:left;" action="/index.php?m=so&c=index&a=init&typeid=53&siteid=1&q="  name="so" type="get">
+<input type="hidden" name="m" value="so">
+<input type="hidden" name="c" value="index">
+<input type="hidden" name="a" value="init">
+<input type="hidden" name="typeid" value="53" id="typeid">
+<input type="hidden" name="siteid" value="1" id="siteid">
+<div id="js-b-suggest" class='b-suggest'>
+<div class='b-suggest-container'>
+<input  name="q" class="b-suggest-q js-query" maxlength="100" autocomplete="off" type="text" placeholder='输入关键词搜索....'>
+<i class='b-suggest-reset js-reset-btn' style='display:none;'></i>
+</div>
+<button type="submit" class="b-suggest-button">
+<i class="fa fa-search"></i>
+</button>
+</div>
+</form>
+<div class="suggest-container" style="display: none;">
+<div class="suggest-box" role="listbox">
+<div class="suggest-content"></div>
+</div>
+</div>
+<a href="javascript:vod(0)"  id="sea-btn-off" class="fa fa-remove"></a>
+<div style="clear:both;"></div>
+</div>
+</header>
+</div>
+</div>
+</header>
+</div>
+</div>
+</header>
+<section class="modbox" style="margin-top: 65px;">
+<h2 class="mb-title g-clear" style="border-bottom: 1px solid #eee;">
+<span style="color:#FF6600;font-size:16px;">成人动漫</span>
+<!--<a href="#">更多></a>-->
+</h2>
+
+ <br>
+
+<div class="mb-main">
+
+<ul class="mb-list g-clear">
+﻿ 
+ 
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1633">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514341763384.jpg);">
+<span class="duration">4:18</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Booty SFM pmv</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 3763</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1632">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514343522468.jpg);">
+<span class="duration">14:29</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Slutty brute fucked from behind in shower by brown guy and creampied</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 4492</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1631">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514343517466.jpg);">
+<span class="duration">13:46</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">3D Busty Brute</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 5525</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1630">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514342919409.jpg);">
+<span class="duration">2:16</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Butterfly Effect Ninja Girl Femdom Game (SFM)</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 2404</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1629">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514342913407.jpg);">
+<span class="duration">1:19</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Overwatch widowmaker porn</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 3173</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1628">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514341685380.jpg);">
+<span class="duration">3:40</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Ophelia - Dark Elf Tribute (Onagi)</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 2828</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1627">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514341182353.jpg);">
+<span class="duration">6:23</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Fatale Vice</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 1522</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1626">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514342998442.jpg);">
+<span class="duration">9:27</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Lord-Kvento Anastasia &amp; Eve Under Arrest 2</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 8718</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1625">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514342972412.jpg);">
+<span class="duration">16:40</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Lost at Beach (Part 1)</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 1703</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1624">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514345352552.jpg);">
+<span class="duration">3:25</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">NieR: Automata - Alone PMV (Revised)</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 6871</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1623">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514343507463.jpg);">
+<span class="duration">51:40</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Forest of the Blue Skin game by Zell23 - Walkthrough and Animation Gallery</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 1760</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+ 
+ 
+ 
+<li class="mb-item">
+<a class="mb-wrap" href="/index.php?m=content&c=index&a=video_show&catid=49&id=1622">
+<div class="mb-cover">
+<div class="mb-img" style="background-image:url(http://img.sinanews.club/cartoon/pic/1514342981426.jpg);">
+<span class="duration">15:53</span>
+</div>
+</div>
+<div class="mb-info">
+<p class="title">Kefla takes on all challengers (Honey Select: Dragon Ball Super)</p>	 
+<p class="desc">
+<table width="100%">
+<tr>
+<td align="left"><i class="time-icon"></i> 2018-01-08</td>
+<td align="right"><i class="hits-icon"></i> 2795</td>
+</tr>
+</table>
+</p>
+</div>
+</a>
+</li>
+</ul>
+</div>
+</section>
+<div style="border-top: 1px solid #eee;"><br></div>
+<div align="center" class="pages" style="height:65px; margin-left:10px;">
+<ul style="display:inline-block; padding:0 8px;margin:5px 1px 0 0; overflow:hidden;vertical-align:top">
+<li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19" > < </a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19">1</a></li> <li class="pagecur"><a href="#">2</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=3">3</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=4">4</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=5">5</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=6">6</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=7">7</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=8">8</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=9">9</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=10">10</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=17">17</a></li><li><a href="index.php?m=wap&c=index&a=video_lists&typeid=19&page=3" > >  </a></li></ul>
+</div>
+<link href="/statics/mscms/css/font-awesome.css" rel="stylesheet" type="text/css">
+ <link href="/statics/mscms/css/font-awesome.css" rel="stylesheet" type="text/css">
+<section style="margin-top:35px;"><b>&nbsp;</b></section>
+<div class="am-navbar am-cf am-navbar-default  am-no-layout">
+<ul class="am-navbar-nav am-cf am-avg-sm-4">
+<li>
+<a href="/index.php?m=wap" class="">
+<span class="fa fa-home fa-2x"></span>
+<span class="am-navbar-label">首页</span>
+</a>
+</li>
+<li>
+<a href="/index.php?m=wap&siteid=1&a=video_index&typeid=19" class="">
+<span class="fa fa-film fa-2x"></span>
+<span class="am-navbar-label">视频</span>
+</a>
+</li>
+<li>
+<a href="/index.php?m=wap&siteid=1&a=pic_index&typeid=3" class="">
+<span class="fa fa-image fa-2x"></span>
+<span class="am-navbar-label">图片</span>
+</a>
+</li>
+<li>
+<a href="/index.php?m=wap&siteid=1&a=xs_index&typeid=1" class="">
+<span class="fa fa-file-text fa-2x"></span>
+<span class="am-navbar-label">小说</span>
+</a>
+</li>
+<li>
+<a href="/index.php?m=content&c=index&a=list_wap_vip&siteid=1" class="">
+<span class="fa fa-diamond fa-2x"></span>
+<span class="am-navbar-label">VIP</span>
+</a>
+</li>
+</ul>
+</div>
+<div style="display:none;">
+</div>
+<div style="display:none;">
+<script language="javascript" type="text/javascript" src="//js.users.51.la/19358656.js"></script>
+<script language="javascript" src="http://count4.51yes.com/click.aspx?id=42518740&logo=1" charset="gb2312"></script>
+</div>
+
+</div>
+</body>
+</html>
