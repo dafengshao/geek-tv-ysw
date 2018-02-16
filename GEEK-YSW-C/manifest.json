@@ -1,7 +1,7 @@
 {
 	"@platforms": ["android", "iPhone", "iPad"],
 	"id": "GEEKSEXH50F9ADB7",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "GEEKSEX",/*应用名称，程序桌面图标名称*/
+	"name": "即刻视频",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
@@ -10,7 +10,7 @@
 	"icons": {
 		"72": "icon.png"
 	},
-	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"launch_path": "init.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
 	"developer": {
 		"name": "",/*开发者名称*/
 		"email": "",/*开发者邮箱地址*/
@@ -91,11 +91,11 @@
 					}
 				},
 				"android": {
-					"mdpi": "", /*普通屏程序图标，分辨率：48x48*/
-					"ldpi": "", /*大屏程序图标，分辨率：48x48*/
-					"hdpi": "", /*高分屏程序图标，分辨率：72x72*/
-					"xhdpi": "",/*720P高分屏程序图标，分辨率：96x96*/
-					"xxhdpi": ""
+					"mdpi": "images/GEEKTV-log.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "images/GEEKTV-log.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "images/GEEKTV-log.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "images/GEEKTV-log.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "images/GEEKTV-log.png","xxxhdpi":"images/GEEKTV-log.png"
 				}
 			},
 			"splashscreen": {
@@ -119,17 +119,19 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "C:/Users/47246/Desktop/timg_看图王.png", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "C:/Users/47246/Desktop/timg_看图王.png", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": "C:/Users/47246/Desktop/timg_看图王.png"
+					"hdpi": "images/460-690.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "images/z.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "images/m.png"
 				}
 			}
-		}
+		},"ads":{"rp":false,"splash":false,"push":false,"spot":false},"adid":""
 	},
 	"dependencies": {
 		"pages": {
 			"index.html": {
-				"resources": [],
+				"resources": [
+					"init.html"
+				],
 				"refer": [
 					"video_index.html",
 					"login.html"
@@ -137,6 +139,20 @@
 				"priority": 0
 			},
 			"video_index.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"init.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"login.html": {
 				"resources": [],
 				"refer": [
 					"index.html"

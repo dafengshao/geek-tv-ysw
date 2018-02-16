@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.0, user-scalable=no">
 <meta name="MobileOptimized" content="240">
 <meta name="Iphone-content" content="320">
-<title>会员登陆 - 会员管理中心</title>
+<title>会员激活 - 会员管理中心</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/msvod_2.css"> 
@@ -121,8 +121,8 @@ width: auto;
 </head>
 <body><div style="display: none; position: absolute;" class=""><div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_nw"></td><td class="aui_n"></td><td class="aui_ne"></td></tr><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title" style="cursor: move; display: block;"></div><a class="aui_close" href="javascript:/*artDialog*/;" style="display: block;">×</a></div></td></tr><tr><td class="aui_icon" style="display: none;"><div class="aui_iconBg" style="background: none;"></div></td><td class="aui_main" style="width: auto; height: auto;"><div class="aui_content" style="padding: 20px 25px;"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se" style="cursor: se-resize;"></td></tr></tbody></table></div></div>
 <div id="wrap" style="">
-<div id="head"> <a href="javascript:history.go(-1);" class="go-back-wap"><i class="ico-back"></i></a>
-<p id="navtit">会员登陆</p>
+<div id="head"> <a href="javascript:history.go(-1);" class="go-back-wap" ><i class="ico-back"></i></a>
+<p id="navtit">激活</p>
 </div>
 <div class="mobile-reg-wrapper">
 <input type="hidden" name="siteid" value="1">
@@ -138,8 +138,8 @@ width: auto;
 	style="width:70%;height:40px;" class="input-text"><br>
 <div id="passwordTip" class="onShow">请输入激活码</div></div>
 <div class="input" style="text-align:center; font-size: 16px;/*color: #DA2758;*/" >
-	<span style="margin:0 auto;">
-		没有激活码？联系qq:561080584
+	<span  style="margin:0 auto;" id="concatQQ">
+		
 	</span>
 </div>
 </div>
@@ -165,17 +165,20 @@ width: auto;
 <script type="text/javascript" src="js/jquery-3.3.1.min.js" ></script>
 <script type="text/javascript" src="js/config.js" ></script>
 <script type="text/javascript" src="js/jquery.md5.js" ></script>
+<script type="text/javascript" src="js/cache.js" ></script>
+<script type="text/javascript" src="js/crypt.js" ></script>
+<script type="text/javascript" src="js/check.vip.js"></script>
 <script type="application/javascript">
 	var time_end_ms = time_end_ms;
 	(function($m, $) {
-		//if()
+		$("#concatQQ").html("没有激活码？联系qq:"+cache.getJSON("onlineConfig").contact.qq);
 		var cd_info = localStorage.getItem("cd_info");
 		var now = new Date().getTime();
 		var cdInfo = JSON.parse(cd_info);
 		var vip = false;
 		if(cdInfo){}else{cdInfo={};};
-		if(cdInfo.time){
-			if(now-cdInfo.time>time_end_ms){//3天过期
+		if(cdInfo.endTime){
+			if(now>parseInt(cdInfo.endTime)){//3天过期
 				localStorage.removeItem("cd_info");
 				cdInfo={};
 			}else{
@@ -189,7 +192,7 @@ width: auto;
 			//cdInfo.time=new Date().getTime();
 			localStorage.setItem("cd_info",JSON.stringify(cdInfo))
 		}else{
-			var endTime = parseInt(cdInfo.time);
+			var endTime = parseInt(cdInfo.endTime);
 			$("#passwordTip").html("到期时间为："+new Date(endTime).toLocaleString());
 			$("#dosubmit").val("已激活");
 			$("#dosubmit").attr("disabled","disabled");
@@ -199,23 +202,34 @@ width: auto;
 		$(document).on("click","#dosubmit",function(){
 			var password = $("#password").val();
 			var cd_info = localStorage.getItem("cd_info");
-			cdInfo = JSON.parse(cd_info)
-			var pwd = ((cdInfo.cdkey+9527+cdInfo.cdkey)).toString();
-			pwd =  window.btoa(pwd).toString();
-			console.log("btoa:"+pwd)
-			pwd = $.md5(pwd).toString();
-			console.log("md5:"+pwd)
-			pwd = pwd.substr(0,4)+pwd.substr(pwd.length-4,4);
+			cdInfo = JSON.parse(cd_info);
+			//cdInfo.cdkey
+			var pwd = getVipInfoJSON(cdInfo.cdkey,1);
+			var pwd30 = getVipInfoJSON(cdInfo.cdkey,30);
+			var pwd180 = getVipInfoJSON(cdInfo.cdkey,180);
 			console.log(pwd);
+			console.log(pwd30);
+			console.log(pwd180);
+			var mny = 1;
 			if(password===pwd){
-				cdInfo.password = pwd;
-				cdInfo.time=new Date().getTime();
-				localStorage.setItem("cd_info",JSON.stringify(cdInfo));
-				console.log("success");
+				
+			}else if(password===pwd30){
+				var mny = 30;
+			}else if(password===pwd180){
+				var mny = 180;
+			}else{
+				return false;
 			}
+			cdInfo.password = password;
+			cdInfo.vipLevel=mny;
+			cdInfo.endTime=new Date().getTime()+mny*1000*60*60*24;
+			localStorage.setItem("cd_info",JSON.stringify(cdInfo));
+			console.log("success");
+			alert("激活成功");
 		});
-		$m('body').on('tap', '#dosubmit', function() {
-			
+		$m('body').on('tap', '.go-back-wap', function() {
+			var ws=plus.webview.currentWebview();
+			plus.webview.close(ws);
 		});
 	})(mui,jQuery);
 	

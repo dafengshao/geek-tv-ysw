@@ -2,7 +2,8 @@
   "index.html": {
     "refer": [
       "video_index.html",
-      "login.html"
+      "login.html",
+      "init.html"
     ],
     "resources": []
   },
@@ -11,5 +12,16 @@
       "index.html"
     ],
     "resources": []
+  },
+  "init.html": {
+    "refer": [
+      "index.html"
+    ],
+    "resources": []
+  },
+  "login.html": {
+    "refer": [
+      "index.html"
+    ]
   }
 }

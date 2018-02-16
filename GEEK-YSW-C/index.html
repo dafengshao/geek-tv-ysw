@@ -4,7 +4,7 @@
 <head>
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>GEEKSEX成人视频手机版</title>
+<title>击壳视频手机版</title>
 <link rel='stylesheet' href='css/msvod_1.css' />
 <link rel='stylesheet' href='css/msvod_2.css' />
 <link rel='stylesheet' href='css/play.css' />
@@ -160,10 +160,9 @@ $("#sitenav").hide();
 <a rel="nofollow" href="/down.php" style="padding: 7px 10px; font-size:16px;">
 <i class="fa fa-cloud-download"></i>APP下载</a>
 </li>-->
-
 <li class="pro" style="padding: 7px 10px; font-size:16px;">
-<a href="/contact.html">
-<i class="fa"></i>联系我们</a>
+<a href="/login.html">
+<i class="fa fa-diamond"></i>成为VIP</a>
 </li>
 <!--<li class="pro" style="padding: 7px 10px; font-size:16px;">
 <a href="http://www.esewu.vip/">
@@ -184,8 +183,8 @@ $("#sitenav").hide();
 <h1 class=""></h1>
 <a class="bb-header-logo-a" href="/index.php?m=wap"></a>
 </div>
-<a href="/index.php?m=member&amp;c=index&amp;a=wap_index" class="user-space"><span class="fa fa-user" style="font-size:24px;"></span></a>
-<a href="javascript:vod(0)" id="sea-show" class="search-mid"><span class="fa fa-search" style="font-size:24px;"></span></a>
+<a href="/login.html" class="user-space"><span class="fa fa-user" style="font-size:24px;"></span></a>
+<!--<a href="javascript:vod(0)" id="sea-show" class="search-mid"><span class="fa fa-search" style="font-size:24px;"></span></a>-->
 </div>
 <div class="sea" id="sea">
 <form class="b-header-search-form js-form" style="width:90%;float:left;" action="/index.php?m=so&amp;c=index&amp;a=init&amp;typeid=53&amp;siteid=1&amp;q=" name="so" type="get">
@@ -262,44 +261,29 @@ $("#sitenav").hide();
 
 </body>
 <script type="text/javascript" src="js/mobile/layer.js"></script>
-<script type="text/javascript" src="js/Base64.js"></script>
+<script type="text/javascript"  src="js/cache.js"></script>
+<script type="text/javascript" src="js/jquery.md5.js" ></script>
+<script type="text/javascript" src="js/crypt.js" ></script>
+<script type="text/javascript" src="js/check.vip.js"></script>
 <script>
 	var default_url ="http://www.esw02.com/index.php?m=wap";
 	var turn_url_key = "turn_url";
-	
+	layer.open({type: 2});
 	(function($m, xhr, $,layer) {
 		var currentUrl = localStorage.getItem(turn_url_key)||default_url;
 		//console.log(localStorage.getItem(turn_url_key));
-		layer.open({type: 2});
 		$m.plusReady(function() {
-			xhr.send({
-			url:currentUrl,
-			callback:call
-			});
-			/*
-			xhr.send({
-			url:'http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp',
-			callback:callTime
-			});*/
-			var configJson = localStorage.getItem("configJson");
-			var config = JSON.parse(configJson);
-			var now = new Date().getTime();
-			if(config==null||config.overtime>now){
-				xhr.send({
-					url:'http://my.nphoto.net/guestbook/wuyifang',
-					callback:callConfig
-				});
+			var key = currentUrl;
+			var html = cache.get(key); 
+			if(html){
+				call(html,currentUrl,true);  
 			}else{
-				if(config.stopDate<now){
-					layer.open({
-					  content: '服务已暂停，请联系'+configJSON.contact.email,
-					  shadeClose: false
-					});
-					return;
-				}
-				layer.close(0);
+				xhr.send({
+				url:currentUrl,
+				callback:call
+				});
 			}
-			
+			//http://v.esewu.com/esewunew/20171217opkhwq555xe/index.m3u8?sign=962a467c6659c2195e5aecde9fff04b13acf14e467d9b5f3d9bf955c38043500f07be65e00355bb8a5d140da6cd2d9fe&start=120&end=180
 		});
 		$m('body').on('tap', 'a', function() {
 			var a_url = $(this).attr("href");
@@ -307,7 +291,14 @@ $("#sitenav").hide();
 				$("#sitenav").toggle();
 				return;
 			}
+			if(a_url=="#"){
+				return ;
+			}
 			if($(this).attr("id")=="fullScreen"){
+				if(checkCdInfo()==false){
+					return ;
+				}
+				//return;
 				 var Intent = plus.android.importClass("android.content.Intent");
 				    var Uri = plus.android.importClass("android.net.Uri");
 				    var main = plus.android.runtimeMainActivity();
@@ -322,14 +313,7 @@ $("#sitenav").hide();
 				page.show();
 				return;
 			}
-			if(a_url=="/contact.html"){
-				return;
-			}
 			var type = getType(a_url);
-			if(type=="video_show"){
-				
-				return ;
-			}
 			if(type===false){
 				//console.log("aa");
 				return;
@@ -340,38 +324,49 @@ $("#sitenav").hide();
 				}
 				a_url = "http://www.esw02.com"+a_url;
 			}
-			
-			console.log("点击了"+a_url);
+			//console.log("点击了"+a_url);
 			localStorage.setItem(turn_url_key,a_url);
 			var page = plus.webview.create("index.html", 1);
+			
 			page.show();
 			//return;
 		});
 
 		
-		function call(responseText,url){
+		function call(responseText,url,nocache){
+			if(nocache){
+			}else{
+				cache.set(url,responseText,1000*60*60);
+			}
 			var a = "";
 			var first = true;
 			
 			//video_lists = url.indexOf("video_lists")>0);
+			var titl = /<title>(.*?)<\/title>/.exec(responseText).toString();
+			titl = titl.substring(titl.indexOf(",")+1,titl.length);
 			$(responseText).each(function(){
 				if($(this).attr("id")=="_main"){
 					var ht = $(this).html();
 					a += '<div id="main">'+ht+"</div>";
 				}
-				var start = '<section class="player" style="margin: 65px 0 0 0;">'+
+				var start = '<section class="player" style="margin: 75px 0 0 0;">'+
+				'<section class="modbox"><span id="video_name" style="font-size:1.5em;">'+titl+'</span><br></section>'+
 				'<div class="media">'+
 				'<div class="zy_media" style="overflow: hidden; height:230px;">';
+				
+				
 				if($(this).hasClass("player")){//视频播放页
-					//
-					
 					var divs = $(this).find("div");
 					var ht = $(divs[0]).html();
-					ht = ht.replace(/&amp;start=120&amp;end=180/g,"");
+					//ht = ht.replace(/&(.*)?/g,"");
+					//console.log(ht);
+					
+					ht = ht.replace(/&amp;start=120&amp;end=180/,"");
+
 					ht = ht+"</div></div>"
+					//console.log(ht);
 					var end = '</section>';
 					a = start+ht+videoMenuHtml+end;
-					//
 					return false;
 				}else if($(this).attr("id")=="channel-manage"){
 					var ht = $(this).html();
@@ -379,21 +374,31 @@ $("#sitenav").hide();
 					a = ht;
 					return false;
 				}else if($(this).hasClass("modbox")){//首页 //视频列表
-					var ht = $(this).html();
-					//console.log(ht);
-					if(first){
-						ht = '<section class="modbox" style="margin-top: 45px;">'+ht+'</section>';
-						first=false;
-					}else{
-						ht = '<section class="modbox" style="margin-top: 0px;">'+ht+'</section>';
-					}
-					
-					a+=ht;
+						if($(this).find("h2").length>0){
+							var ht = $(this).html();
+							if(first){
+								ht = '<section class="modbox" style="margin-top: 45px;">'+ht+'</section>';
+								first=false;
+							}else{
+								ht = '<section class="modbox" style="margin-top: 15px;">'+ht+'</section>';
+							}
+							a+=ht;
+						}
 				}else if ($(this).hasClass("pages")){
 					var len = $(this).find("li").length;
+					var currentIndex = 0;
 					 $(this).find("li").each(function(inde,el){
-					 	console.log(inde);
-					 	if(inde>1&&inde<len-6){$(el).detach();}
+					 	if($(this).hasClass("pagecur")){
+					 		currentIndex = inde;
+					 		return true;
+					 	}
+					 });
+					 $(this).find("li").each(function(inde,el){
+					 	//console.log(inde);
+					 	if(inde>1&&inde!=currentIndex-1&&inde!=currentIndex&&inde!=currentIndex+1&&inde<len-2){
+					 		$(el).detach();
+					 	}
+					 	//if(inde>1&&inde<len-6){$(el).detach();}
 					 });
 					
 					var ht = $(this).html();
@@ -425,67 +430,16 @@ $("#sitenav").hide();
 			/*else if(url==""){
 			}*/
 		}
+
 		
-		function checkVIP(){
-			
-			
-			var playInfo=localStorage.getItem("play_info");
-			if(playInfo){
-				var playInfoJson = JSON.parse(playInfo);
-				if(new Date().getTime()-playInfoJson.time<1000*30){
-					playInfoJson.play_count=playInfoJson.play_count+1;
-				}else{
-					playInfoJson.play_count=1;
-					playInfoJson.time = new Date().getTime();
-				}
-				var newPlayInfoJson = JSON.stringify(playInfoJson);
-				localStorage.setItem("play_info",newPlayInfoJson);
-			}else{
-				var obj = {"play_count": 1,"time": new Date().getTime()};
-				obj = JSON.stringify(obj);
-				localStorage.setItem("play_info",obj);
-			}
-			if(playInfoJson.play_count>=1){
-				var page = plus.webview.create("login.html", 2);
-	
-				page.show();
-			}
-		}
-		function callTime(txt,url){
-			var tim = JSON.parse(txt);
-			var now = tim.data.t;
-			//if(now>)
-		}
-		function callConfig(txt,url){
-			$(txt).find("p").each(function (){
-				var config = $(this).html();
-				if($(this).hasClass("t12")){
-					return true;
-				}
-				layer.close(0);
-				console.log(config);
-				var configStr = Base64.decode(config);
-				console.log(configStr);
-				var configJSON = JSON.parse(configStr);
-				var now = new Date().getTime();
-				configJSON.overtime = now+1000*60*60*6;
-				console.log(configJSON);
-				localStorage.setItem("configJson",configStr);
-				if(configJSON.stopDate<now){
-					layer.open({
-					  content: '服务已暂停，请联系'+configJSON.contact.email,
-					  shadeClose: false
-					});
-				}
-			})
-		}
+		
 	})(mui, naxhr, jQuery,layer);
 	
-	var Base64 = new Base64();
+	
 	var videoMenuHtml = '<div class="detail"><p class="act g-clear" '+
 	'style="padding-top: 10px; margin-top:26px;text-align:center;"> '+
 '<span id="favorite" ><a href="#" class="msvod">收藏</a></span> '+
-'<span ><a href="" id="download" class="msvod">下载</a></span>'+
+//'<span ><a href="" id="download" class="msvod">下载</a></span>'+
 '<span ><a href="" id="fullScreen" class="msvod">全屏</a></span>'+
 '</p></div></section>';
 	//'<div style="border-top: 1px solid #eee;"><br></div>'+

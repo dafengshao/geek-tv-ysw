@@ -29,10 +29,12 @@ var naxhr={
 	                	console.log("naxhr.xhr请求已完成");
 	                	//设置回调函数
 	               		//responseText = naxhr.xhr.responseText;
+	               		//console.log("naxhr response:"+naxhr.xhr.responseText);
 	               		configur.callback(naxhr.xhr.responseText,configur.url);
 	                } else {
 	                	console.log( "naxhr.xhr请求失败："
 	                	+naxhr.xhr.status );
+	                	alert("网络异常，请检查手机网络连接");
 	                	return -1;
 	                }
 	                break;
@@ -40,8 +42,14 @@ var naxhr={
 	                break;
 	        }
 		}
+	/*	naxhr.xhr.onerror=function(){
+			//configur.onerror(configur.url);
+		}
+		naxhr.xhr.ontimeout=function(){
+			//configur.ontimeout(configur.url);
+		}*/
 		//configur.before();
-		naxhr.xhr.open(configur.method, configur.url,configur.async );
+		naxhr.xhr.open(configur.method, configur.url,false);
 		naxhr.xhr.send();
 	}
 }
