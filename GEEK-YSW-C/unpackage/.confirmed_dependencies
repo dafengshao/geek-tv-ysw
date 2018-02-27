@@ -22,6 +22,12 @@
   "login.html": {
     "refer": [
       "index.html"
+    ],
+    "resources": []
+  },
+  "admin-login.html": {
+    "refer": [
+      "index.html"
     ]
   }
 }

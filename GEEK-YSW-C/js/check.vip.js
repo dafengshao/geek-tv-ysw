@@ -29,10 +29,10 @@ function checkCdInfo(){
 		}
 		//return true;
 		var a = getAndAddPlayCount();
-		console.log(a);
+
 		if(a>onlineConfig.novip.count){
 			checkPlay = layer.open({
-			  content: '未激活的账户一天内最多只能看'+onlineConfig.novip.count+'次',
+			  content: '未激活的账户观看次数有限制',
 			  //style:'height:250px',
 			  btn: '马上激活',
 			  shadeClose: false,
@@ -40,8 +40,9 @@ function checkCdInfo(){
 			  	window.location.href="login.html";
 			  }
 			});
+			return false;
 		}
-		return false;
+		return true;
 	}
 	function getNew(){
 		var playInfoJsonNew = {count:1,time:new Date().getTime()};
@@ -65,12 +66,13 @@ function checkCdInfo(){
 	}
 	var start_size = 10;
 	var start_len = 32;
-	function getVipInfoJSON(code,mny){
-		var code = (code+mny+"9527");
-		console.log(code);
-		var newCode = $.md5(crypt.decode(code).substr(start_size,start_len));
+	function getVipInfoJSON(mny){
+		var cd_info = localStorage.getItem("cd_info");
+		cdInfo = JSON.parse(cd_info);
+		var cdkey =cdInfo.cdkey;
+		var code = parseInt(cdkey+mny);
+		var newCode = $.md5(code+code+"1");
 		var vipCode = newCode.substr(mny/10,8);
-		//console.log(vipCode);
 		return vipCode;
 		
 	}

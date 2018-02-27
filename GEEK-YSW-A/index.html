@@ -4,7 +4,7 @@
 <head>
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>一色屋成人视频手机版</title>
+<title>击壳视频手机版</title>
 <link rel='stylesheet' href='css/msvod_1.css' />
 <link rel='stylesheet' href='css/msvod_2.css' />
 <link rel='stylesheet' href='css/play.css' />
@@ -317,8 +317,8 @@ $("#sitenav").hide();
 		
 		function call(responseText,url){
 			var a = "";
-			var first = true;
-			
+			var first = sessionStorage.getItem("first_index");
+			console.log("session:"+ first);
 			//video_lists = url.indexOf("video_lists")>0);
 			$(responseText).each(function(){
 				if($(this).attr("id")=="_main"){
@@ -345,13 +345,7 @@ $("#sitenav").hide();
 				}else if($(this).hasClass("modbox")){//首页 //视频列表
 					var ht = $(this).html();
 					//console.log(ht);
-					if(first){
-						ht = '<section class="modbox" style="margin-top: 45px;">'+ht+'</section>';
-						first=false;
-					}else{
-						ht = '<section class="modbox" style="margin-top: 0px;">'+ht+'</section>';
-					}
-					
+					ht = '<section class="modbox" style="margin-top: 15px;">'+ht+'</section>';
 					a+=ht;
 				}else if ($(this).hasClass("pages")){
 					var len = $(this).find("li").length;

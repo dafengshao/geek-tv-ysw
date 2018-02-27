@@ -1,7 +1,7 @@
 {
 	"@platforms": ["android", "iPhone", "iPad"],
-	"id": "GEEKSEXH50F9ADB7",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "即刻视频",/*应用名称，程序桌面图标名称*/
+	"id": "GEEKAV",/*应用的标识，创建应用时自动生成，勿手动修改*/
+	"name": "GEEKAV",/*应用名称，程序桌面图标名称*/
 	"version": {
 		"name": "1.0.0",/*应用版本名称*/
 		"code": "83"
@@ -119,9 +119,9 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "images/460-690.png", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "images/z.png", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": "images/m.png"
+					"hdpi": "images/480.png", /*高分屏启动图片，分辨率：480x762*/
+					"xhdpi": "images/720.png", /*720P高分屏启动图片，分辨率：720x1242*/
+					"xxhdpi": "images/1080.png"
 				}
 			}
 		},"ads":{"rp":false,"splash":false,"push":false,"spot":false},"adid":""
@@ -153,6 +153,13 @@
 				"priority": 0
 			},
 			"login.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"admin-login.html": {
 				"resources": [],
 				"refer": [
 					"index.html"

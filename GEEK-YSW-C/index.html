@@ -164,6 +164,10 @@ $("#sitenav").hide();
 <a href="/login.html">
 <i class="fa fa-diamond"></i>成为VIP</a>
 </li>
+<li style="padding: 7px 10px; font-size:16px;">
+<a href="/contact.html">
+<i class="fa fa-envelope"></i>联系我们</a>
+</li>
 <!--<li class="pro" style="padding: 7px 10px; font-size:16px;">
 <a href="http://www.esewu.vip/">
 <i class="fa fa-diamond"></i>备用网址</a>
@@ -263,10 +267,9 @@ $("#sitenav").hide();
 <script type="text/javascript" src="js/mobile/layer.js"></script>
 <script type="text/javascript"  src="js/cache.js"></script>
 <script type="text/javascript" src="js/jquery.md5.js" ></script>
-<script type="text/javascript" src="js/crypt.js" ></script>
 <script type="text/javascript" src="js/check.vip.js"></script>
 <script>
-	var default_url ="http://www.esw02.com/index.php?m=wap";
+	var default_url ="http://www.esewu.com/index.php?m=wap";
 	var turn_url_key = "turn_url";
 	layer.open({type: 2});
 	(function($m, xhr, $,layer) {
@@ -294,6 +297,7 @@ $("#sitenav").hide();
 			if(a_url=="#"){
 				return ;
 			}
+			
 			if($(this).attr("id")=="fullScreen"){
 				if(checkCdInfo()==false){
 					return ;
@@ -304,6 +308,7 @@ $("#sitenav").hide();
 				    var main = plus.android.runtimeMainActivity();
 				    var intent=new Intent(Intent.ACTION_VIEW);
 				    var uri=Uri.parse($("#video").attr("src"));
+				    
 				    intent.setDataAndType(uri,"video/*");
 				    main.startActivity(intent);
 				return;
@@ -311,6 +316,10 @@ $("#sitenav").hide();
 			if(a_url=="/login.html"){
 				var page = plus.webview.create(a_url, 1);
 				page.show();
+				return;
+			}
+			if(a_url=="/contact.html"){
+				mui.toast("email:"+cache.getJSON("onlineConfig").email);
 				return;
 			}
 			var type = getType(a_url);
@@ -322,7 +331,7 @@ $("#sitenav").hide();
 				if(!a_url.startsWith("/")){
 					a_url="/"+a_url;
 				}
-				a_url = "http://www.esw02.com"+a_url;
+				a_url = localStorage.getItem("turn_host")+a_url;
 			}
 			//console.log("点击了"+a_url);
 			localStorage.setItem(turn_url_key,a_url);
@@ -361,8 +370,8 @@ $("#sitenav").hide();
 					//ht = ht.replace(/&(.*)?/g,"");
 					//console.log(ht);
 					
-					ht = ht.replace(/&amp;start=120&amp;end=180/,"");
-
+					ht = ht.replace(/start=120/,"");
+					ht=ht.replace(/end=180/,"");
 					ht = ht+"</div></div>"
 					//console.log(ht);
 					var end = '</section>';
@@ -438,7 +447,7 @@ $("#sitenav").hide();
 	
 	var videoMenuHtml = '<div class="detail"><p class="act g-clear" '+
 	'style="padding-top: 10px; margin-top:26px;text-align:center;"> '+
-'<span id="favorite" ><a href="#" class="msvod">收藏</a></span> '+
+//'<span ><a href=""  id="downloadVideo" class="msvod">下载</a></span> '+
 //'<span ><a href="" id="download" class="msvod">下载</a></span>'+
 '<span ><a href="" id="fullScreen" class="msvod">全屏</a></span>'+
 '</p></div></section>';

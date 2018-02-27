@@ -131,7 +131,7 @@ width: auto;
 <form method="post" style="width:90%;" action="" id="myform" name="myform">
 <input type="hidden" name="siteid" value="1">
 <div class="col-left form-login">
-<div class="input"><label>机器码：</label><input type="text" id="username" name="username"
+<div class="input"><label>验证码：</label><input type="text" id="username" name="username"
 	 style="width:70%;height:40px;" readonly="readonly" class="input-text"><br>
 </div>
 <div class="input"><label>激活码：</label><input type="text" id="password" 
@@ -163,7 +163,6 @@ width: auto;
 </div></body>
 <script type="text/javascript" src="js/mui.min.js" ></script>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js" ></script>
-<script type="text/javascript" src="js/config.js" ></script>
 <script type="text/javascript" src="js/jquery.md5.js" ></script>
 <script type="text/javascript" src="js/cache.js" ></script>
 <script type="text/javascript" src="js/crypt.js" ></script>
@@ -171,7 +170,7 @@ width: auto;
 <script type="application/javascript">
 	var time_end_ms = time_end_ms;
 	(function($m, $) {
-		$("#concatQQ").html("没有激活码？联系qq:"+cache.getJSON("onlineConfig").contact.qq);
+		
 		var cd_info = localStorage.getItem("cd_info");
 		var now = new Date().getTime();
 		var cdInfo = JSON.parse(cd_info);
@@ -181,6 +180,7 @@ width: auto;
 			if(now>parseInt(cdInfo.endTime)){//3天过期
 				localStorage.removeItem("cd_info");
 				cdInfo={};
+				cd_info = false;
 			}else{
 				vip= true;
 			}
@@ -188,7 +188,12 @@ width: auto;
 		if(!vip){
 			var org = now.toString().substr(0,6)+now;
 			var hc = hashCode(org).toString().substr(1,7);
-			cdInfo.cdkey = hc;
+			//var cdinfostr = localStorage.getItem("cd_info");
+			if(cd_info){
+				cdInfo.cdkey = JSON.parse(cd_info).cdkey;
+			}else{
+				cdInfo.cdkey = hc;
+			}
 			//cdInfo.time=new Date().getTime();
 			localStorage.setItem("cd_info",JSON.stringify(cdInfo))
 		}else{
@@ -199,24 +204,28 @@ width: auto;
 		}
 		$("#username").val(cdInfo.cdkey);
 		$("#password").val(cdInfo.password);
+		$("#concatQQ").html("没有激活码？联系"+cache.getJSON("onlineConfig").contact);
 		$(document).on("click","#dosubmit",function(){
 			var password = $("#password").val();
-			var cd_info = localStorage.getItem("cd_info");
-			cdInfo = JSON.parse(cd_info);
+		
 			//cdInfo.cdkey
-			var pwd = getVipInfoJSON(cdInfo.cdkey,1);
-			var pwd30 = getVipInfoJSON(cdInfo.cdkey,30);
-			var pwd180 = getVipInfoJSON(cdInfo.cdkey,180);
-			console.log(pwd);
-			console.log(pwd30);
-			console.log(pwd180);
+			var pwd = getVipInfoJSON(1);
+			var pwd15 = getVipInfoJSON(15);
+			var pwd30 = getVipInfoJSON(30);
+			var pwd180 = getVipInfoJSON(180);
+			console.log("1d:"+pwd);
+			console.log("15d:"+pwd15);
+			console.log("30d:"+pwd30);
+			console.log("180d:"+pwd180);
 			var mny = 1;
 			if(password===pwd){
 				
+			}else if(password===pwd15){
+				mny = 15;
 			}else if(password===pwd30){
-				var mny = 30;
+				mny = 30;
 			}else if(password===pwd180){
-				var mny = 180;
+				mny = 180;
 			}else{
 				return false;
 			}
