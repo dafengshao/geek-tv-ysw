@@ -70,8 +70,8 @@ function checkCdInfo(){
 		var cd_info = localStorage.getItem("cd_info");
 		cdInfo = JSON.parse(cd_info);
 		var cdkey =cdInfo.cdkey;
-		var code = parseInt(cdkey+mny);
-		var newCode = $.md5(code+code+"1");
+		var code = parseInt(mny+cdkey);
+		var newCode = $.md5((code+code)+"1024");
 		var vipCode = newCode.substr(mny/10,8);
 		return vipCode;
 		

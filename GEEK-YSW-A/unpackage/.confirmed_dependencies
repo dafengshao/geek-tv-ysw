@@ -3,7 +3,7 @@
     "refer": [
       "video_index.html",
       "login.html",
-      "admin_login.html"
+      "init.html"
     ],
     "resources": []
   },
@@ -12,5 +12,22 @@
       "index.html"
     ],
     "resources": []
+  },
+  "init.html": {
+    "refer": [
+      "index.html"
+    ],
+    "resources": []
+  },
+  "login.html": {
+    "refer": [
+      "index.html"
+    ],
+    "resources": []
+  },
+  "admin-login.html": {
+    "refer": [
+      "index.html"
+    ]
   }
 }
